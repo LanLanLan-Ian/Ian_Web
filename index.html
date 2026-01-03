@@ -154,18 +154,24 @@
         <div class="mb-10">
             <div class="grid md:grid-cols-4 gap-6">
                 <div class="md:col-span-1">
-                    <img src="paper2.png" alt="Paper visualization" 
-                         class="w-full h-32 object-cover rounded border border-neutral-300">
+                    <img src="ChunkOut2.jpg" alt="Paper visualization" 
+                         class="w-full max-h-48 object-contain rounded border border-neutral-300">
                 </div>
                 <div class="md:col-span-3">
                     <h3 class="text-xl font-medium mb-1">ChunkOut: Information-Sufficient Token Pruning for Efficient Prompt Compression</h3>
                     <p class="text-neutral-600 text-sm mb-3">
-                        <span class="text-neutral-800"><span class="font-bold">Zixuan Lan</span><sup>*</sup>, Yanhong Li<sup>*</sup>, Joe Zhou</span>. · ICLR Under Review
+                        <span class="text-neutral-800"><span class="font-bold">Zixuan Lan</span><sup>*</sup>, Yanhong Li<sup>*</sup>, Joe Zhou</span>. · EACL 2026
                     </p>
                     <p class="text-neutral-500 text-xs mb-3"><sup>*</sup>Equal contribution</p>
                     <p class="text-neutral-700 mb-4 leading-relaxed">
-                        Brief summary of the paper...
+                        Large language models (LLMs) increasingly rely on long prompts or retrieved contexts, driving up memory footprint and overall cost.  
+                        We observe that tokens whose <em>forward probability</em> is already high given the preceding context contribute little additional information, as the model has effectively encoded their content in its hidden state.  
+                        Leveraging this information-sufficiency insight, we introduce ChunkOut, a model-agnostic algorithm that scores each token with its next-token likelihood and simply drops those above a threshold.  
+                        ChunkOut requires no extra training, incurs <em>O(n)</em> overhead, and can be plugged into any frozen LLM.  
+                        Across QA and summarization benchmarks, it trims 50% of prompt tokens while maintaining (and occasionally improving) task accuracy, outperforming prior compression baselines by up to 5% pp.   
+                        ChunkOut offers a principled yet lightweight path towards cheaper, and greener LLM inference.
                     </p>
+
                     <div class="flex flex-wrap gap-3">
                         <a href="#" class="text-neutral-600 hover:text-neutral-900 underline text-sm">arXiv</a>
                         <a href="#" class="text-neutral-600 hover:text-neutral-900 underline text-sm">GitHub</a>
