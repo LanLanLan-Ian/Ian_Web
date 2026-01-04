@@ -154,7 +154,7 @@
         <div class="mb-10">
             <div class="grid md:grid-cols-4 gap-6">
                 <div class="md:col-span-1">
-                    <img src="ChunkOut2.jpg" alt="Paper visualization" 
+                    <img src="paper2.png" alt="Paper visualization" 
                          class="w-full max-h-48 object-contain rounded border border-neutral-300">
                 </div>
                 <div class="md:col-span-3">
@@ -164,12 +164,7 @@
                     </p>
                     <p class="text-neutral-500 text-xs mb-3"><sup>*</sup>Equal contribution</p>
                     <p class="text-neutral-700 mb-4 leading-relaxed">
-                        Large language models (LLMs) increasingly rely on long prompts or retrieved contexts, driving up memory footprint and overall cost.  
-                        We observe that tokens whose <em>forward probability</em> is already high given the preceding context contribute little additional information, as the model has effectively encoded their content in its hidden state.  
-                        Leveraging this information-sufficiency insight, we introduce ChunkOut, a model-agnostic algorithm that scores each token with its next-token likelihood and simply drops those above a threshold.  
-                        ChunkOut requires no extra training, incurs <em>O(n)</em> overhead, and can be plugged into any frozen LLM.  
-                        Across QA and summarization benchmarks, it trims 50% of prompt tokens while maintaining (and occasionally improving) task accuracy, outperforming prior compression baselines by up to 5% pp.   
-                        ChunkOut offers a principled yet lightweight path towards cheaper, and greener LLM inference.
+                        Brief summary of the paper...
                     </p>
 
                     <div class="flex flex-wrap gap-3">
