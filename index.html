@@ -23,6 +23,118 @@
         .token-merged {
             animation: token-merge 3s ease-in-out infinite;
         }
+
+        .publication {
+            display: grid;
+            grid-template-columns: 180px minmax(0, 1fr);
+            gap: 28px;
+            padding: 28px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .publication:first-of-type { padding-top: 0; }
+        .publication:last-child { border-bottom: 0; }
+        .publication-image {
+            width: 100%;
+            height: auto;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+        }
+        .convcue-preview {
+            display: block;
+            width: 100%;
+            align-self: center;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background: #fff;
+        }
+        .convcue-preview .publication-image {
+            display: block;
+            width: 100%;
+            max-width: none;
+            height: auto;
+            border: 0;
+            border-radius: 8px;
+        }
+        .convcue-preview:focus-visible { outline: 2px solid #315b86; outline-offset: 3px; }
+        .umim-preview {
+            display: block;
+            width: 100%;
+            aspect-ratio: 960 / 777;
+            align-self: start;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background: #fff;
+        }
+        .umim-preview .publication-image {
+            display: block;
+            width: 166.666667%;
+            max-width: none;
+            height: auto;
+            border: 0;
+            border-radius: 0;
+        }
+        .umim-preview:focus-visible { outline: 2px solid #315b86; outline-offset: 3px; }
+        .sabre-workflow-preview { display: block; align-self: center; }
+        .sabre-workflow-preview img { display: block; width: 100%; height: auto; background: #fff; }
+        .sabre-workflow-preview:focus-visible { outline: 2px solid #315b86; outline-offset: 3px; }
+        .publication-info { grid-column: 2; }
+        .publication-focus {
+            display: inline-block;
+            margin-bottom: 8px;
+            padding: 3px 8px;
+            border: 1px solid #e5e7eb;
+            border-radius: 5px;
+            background: #f7f8fa;
+            color: #525b67;
+            font-size: 11px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        .publication-title {
+            margin: 0 0 10px;
+            font-size: 19px;
+            font-weight: 600;
+            line-height: 1.45;
+            letter-spacing: -0.015em;
+        }
+        .publication-authors { color: #525252; font-size: 14px; line-height: 1.7; }
+        .publication-authors strong { color: #262626; font-weight: 600; }
+        .publication-contribution { margin-top: 5px; color: #737373; font-size: 12px; }
+        .publication-tldr {
+            margin: 10px 0 0;
+            color: #525252;
+            font-size: 13px;
+            line-height: 1.65;
+        }
+        .publication-tldr > span { margin-right: 5px; color: #404040; font-weight: 600; }
+        .publication-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+        .publication-badge, .publication-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            min-height: 34px;
+            padding: 6px 11px;
+            border: 1px solid #dbe4ef;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        .publication-badge { color: #315b86; background: #eff5fb; }
+        .publication-badge--review { color: #525252; background: #f5f5f5; border-color: #e5e5e5; }
+        .publication-link { color: #404040; background: #fff; border-color: #d4d4d4; text-decoration: none; }
+        .publication-link:hover { color: #234d77; background: #f4f7fb; border-color: #9eb6d0; }
+        .publication-link:focus-visible { outline: 2px solid #315b86; outline-offset: 3px; }
+        .publication-link:disabled { color: #737373; background: #f5f5f5; border-color: #e5e5e5; cursor: default; }
+        @media (max-width: 640px) {
+            .publication { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+            .publication-image { max-width: 260px; }
+            .sabre-workflow-preview, .umim-preview, .convcue-preview { max-width: 260px; }
+            .publication-info { grid-column: 1; }
+            .publication-title { font-size: 18px; }
+        }
     </style>
 </head>
 <body class="bg-white text-neutral-900">
@@ -38,7 +150,10 @@
                 
                 <p class="text-neutral-700 mb-6 leading-relaxed">
                     Hello! I'm an independent researcher. I received my Master's degree from the University of Chicago, where I worked with Professor <a href="https://joezhouai.com/" class="text-neutral-900 underline hover:text-neutral-600" target="_blank">Joe Zhou</a> from Stony Brook University (life-long collaborator and advisor). 
-                    My research focuses on improving model efficiency through algorithmic innovations. I am currently working on Large Language Models and Vision-Language Models, with interests spanning information compression (including token compression), architectural design, model interpretability, and Triton/CUDA optimization. I am actively learning GPU programming and am most familiar with the Ampere architecture.
+                    My research focuses on improving model efficiency through algorithmic innovations and computer vision.
+                </p>
+                <p class="text-neutral-700 mb-6 leading-relaxed">
+                    I currently work as an Algorithm Engineer on the AI team at a fintech company. My work focuses on macroeconomic and financial forecasting, spanning traditional time-series models, LLM-based forecasting, and simulation. Through my industry work, I have gained extensive hands-on experience in AI agent development and model training.
                 </p>
                 
                 <div class="space-x-4 text-neutral-700">
@@ -75,105 +190,110 @@
     <section class="max-w-5xl mx-auto px-8 py-16">
         <h2 class="text-3xl font-light mb-10">Publications</h2>
         
-        <!-- Publication Card 1 -->
-        <div class="mb-10">
-            <div class="grid md:grid-cols-4 gap-6">
-                
-                <!-- Paper Image -->
-                <div class="md:col-span-1">
-                    <img src="text_to_image.jpg" alt="Paper visualization" 
-                         class="w-full h-48 object-cover rounded-lg border border-neutral-300">
-                </div>
-                
-                <!-- Paper Info -->
-                <div class="md:col-span-3">
-                    <h3 class="text-xl font-medium mb-1">Text or Pixels? It Takes Half: On the Token Efficiency of Visual Text Inputs in Multimodal LLMs</h3>
-                    <p class="text-neutral-600 text-sm mb-3">
-                        <span class="text-neutral-800">Yanhong Li<sup>*</sup>, <span class="font-bold">Zixuan Lan</span><sup>*</sup>, Joe Zhou</span>. · EMNLP 2025
-                    </p>
-                    <p class="text-neutral-500 text-xs mb-3"><sup>*</sup>Equal contribution</p>
-                    <p class="text-neutral-700 mb-4 leading-relaxed">
-                        Large language models (LLMs) and their multimodal variants can now process visual inputs, including images of text. This raises an intriguing question: can we compress textual inputs by feeding them as images to reduce token usage while preserving performance? In this paper, we show that visual text representationsare a practical and surprisingly effective form of input compression for decoder LLMs. Weexploit the idea of rendering long text inputs as a single image and provide it directly to the model. This leads to dramatically reduced number of decoder tokens required, offering a new form of input compression.
-                    </p>
-                    <div class="flex flex-wrap gap-3">
-                        <a href="https://arxiv.org/abs/2510.18279" class="text-neutral-600 hover:text-neutral-900 underline text-sm" target="_blank">arXiv</a>
-                        <a href="https://github.com/yanhong-lbh/text_or_pixels" class="text-neutral-600 hover:text-neutral-900 underline text-sm" target="_blank">GitHub</a>
-                    </div>
+        <article class="publication" id="convcue">
+            <a class="convcue-preview" href="convcue-capability.png" target="_blank" rel="noopener noreferrer" aria-label="View the complete ConvCue capability and ablation figure">
+                <img src="convcue-capability.png" alt="ConvCue capability radar and convolutional feature augmentation results across three models" class="publication-image" width="1600" height="897" loading="lazy">
+            </a>
+            <div class="publication-info">
+                <span class="publication-focus">VLM Training</span>
+                <h3 class="publication-title">ConvCue: Complementary Visual Inductive Biases for Vision-Language Models</h3>
+                <p class="publication-authors"><strong>Zixuan Lan</strong>, Shichu Sun</p>
+                <p class="publication-tldr"><span>TL;DR</span> Complement ViT representations with frozen CNN features through gated cross-attention.</p>
+                <div class="publication-links">
+                    <a href="https://www.researchgate.net/publication/414924136_ConvCue_Complementary_Visual_Inductive_Biases_for_Vision-Language_Models" class="publication-link" target="_blank" rel="noopener noreferrer">Paper <span aria-hidden="true">↗</span></a>
+                    <a href="https://github.com/LanLanLan-Ian/CONVCUE" class="publication-link" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span></a>
                 </div>
             </div>
-        </div>
+        </article>
 
-        <!-- Publication Card 2 -->
-        <div class="mb-10">
-            <div class="grid md:grid-cols-4 gap-6">
-                <div class="md:col-span-1">
-                    <img src="paper2.png" alt="Paper visualization" 
-                         class="w-full h-32 object-cover rounded border border-neutral-300">
-                </div>
-                <div class="md:col-span-3">
-                    <h3 class="text-xl font-medium mb-1">Reduce What You Use: Input-Aware Matrix-Multiplication Pruning for LLMs</h3>
-                    <p class="text-neutral-600 text-sm mb-3">
-                        <span class="text-neutral-800"><span class="font-bold">Zixuan Lan</span><sup>*</sup>, Yanhong Li, Joe Zhou</span>. · ICLR Under Review
-                    </p>
-                    <p class="text-neutral-700 mb-4 leading-relaxed">
-                        Brief summary of the paper...
-                    </p>
-                    <div class="flex flex-wrap gap-3">
-                        <a href="#" class="text-neutral-600 hover:text-neutral-900 underline text-sm">arXiv</a>
-                        <a href="#" class="text-neutral-600 hover:text-neutral-900 underline text-sm">GitHub</a>
-                    </div>
+        <article class="publication" id="umim">
+            <a class="umim-preview" href="umim-method.png" target="_blank" rel="noopener noreferrer" aria-label="View the UMIM training and merge module diagram at full size">
+                <img src="umim-method.png" alt="Distilling sequential computation from a frozen Transformer into a trainable merge module" class="publication-image" width="1600" height="777" loading="lazy">
+            </a>
+            <div class="publication-info">
+                <span class="publication-focus">Token Merging</span>
+                <h3 class="publication-title">Distilling Sequential Computation in Transformer Language Models</h3>
+                <p class="publication-authors"><strong>Zixuan Lan</strong>, Jessica Yang, Yanhong Li, Karen Livescu, Jiawei Zhou</p>
+                <p class="publication-tldr"><span>TL;DR</span> Distill multiple token steps into a single merged representation while keeping the language model frozen.</p>
+                <div class="publication-links">
+                    <span class="publication-badge">NeurIPS 2026</span>
+                    <a href="https://arxiv.org/abs/2609.27233" class="publication-link" target="_blank" rel="noopener noreferrer">Paper <span aria-hidden="true">↗</span></a>
+                    <a href="https://github.com/Zesearch/Umim-LLM" class="publication-link" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span></a>
+                    <!-- Replace this disabled button with a link when the project URL is ready. -->
+                    <button type="button" class="publication-link" disabled title="Project website coming soon" aria-label="Website (coming soon)">Website <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"></circle><ellipse cx="12" cy="12" rx="4" ry="9"></ellipse><path d="M3 12h18"></path></svg></button>
                 </div>
             </div>
-        </div>
+        </article>
 
-        <!-- Publication Card 3 -->
-
-        <div class="mb-10">
-            <div class="grid md:grid-cols-4 gap-6">
-                <div class="md:col-span-1">
-                    <img src="paper2.png" alt="Paper visualization" 
-                         class="w-full h-32 object-cover rounded border border-neutral-300">
-                </div>
-                <div class="md:col-span-3">
-                    <h3 class="text-xl font-medium mb-1">Substituting from the Input: Distilling Sequential Computation in Transformer Language Models</h3>
-                    <p class="text-neutral-600 text-sm mb-3">
-                        <span class="text-neutral-800"><span class="font-bold">Zixuan Lan</span><sup>*</sup>, Jiaming Yang,Yanhong Li, Karen Livescu, Joe Zhou</span>. · ICLR Under Review
-                    </p>
-                    <p class="text-neutral-700 mb-4 leading-relaxed">
-                        Brief summary of the paper...
-                    </p>
-                    <div class="flex flex-wrap gap-3">
-                        <a href="#" class="text-neutral-600 hover:text-neutral-900 underline text-sm">arXiv</a>
-                        <a href="#" class="text-neutral-600 hover:text-neutral-900 underline text-sm">GitHub</a>
-                    </div>
+        <article class="publication" id="sabre">
+            <a class="sabre-workflow-preview" href="sabre-workflow.svg" target="_blank" rel="noopener noreferrer" aria-label="View the SABRE workflow diagram at full size">
+                <img src="sabre-workflow.svg" alt="SABRE workflow: Test Primer, Compile and Construct, Stress Candidates, Filter Verify and Test" class="publication-image" width="1200" height="800" loading="lazy">
+            </a>
+            <div class="publication-info">
+                <span class="publication-focus">Visual Benchmark</span>
+                <h3 class="publication-title">SABRE: Scalable and Automated Benchmarking of VLMs under Stress</h3>
+                <p class="publication-authors"><strong>Zixuan Lan</strong><sup>*</sup>, Luzhe Sun<sup>*</sup>, Matthew R. Walter, Jiawei Zhou</p>
+                <p class="publication-contribution"><sup>*</sup>Equal contribution</p>
+                <p class="publication-tldr"><span>TL;DR</span> Build challenging visual benchmarks through automated generation, editing, and filtering, followed by human verification.</p>
+                <div class="publication-links">
+                    <a href="https://arxiv.org/abs/2608.07435" class="publication-link" target="_blank" rel="noopener noreferrer">Paper <span aria-hidden="true">↗</span></a>
+                    <a href="https://github.com/Zesearch/vlm-SABRE" class="publication-link" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span></a>
+                    <a href="https://zesearch.github.io/vlm-SABRE/" class="publication-link" target="_blank" rel="noopener noreferrer">Website <span aria-hidden="true">↗</span></a>
                 </div>
             </div>
-        </div>
+        </article>
 
-        <!-- Publication Card 4 -->
-        <div class="mb-10">
-            <div class="grid md:grid-cols-4 gap-6">
-                <div class="md:col-span-1">
-                    <img src="paper2.png" alt="Paper visualization" 
-                         class="w-full max-h-48 object-contain rounded border border-neutral-300">
-                </div>
-                <div class="md:col-span-3">
-                    <h3 class="text-xl font-medium mb-1">ChunkOut: Information-Sufficient Token Pruning for Efficient Prompt Compression</h3>
-                    <p class="text-neutral-600 text-sm mb-3">
-                        <span class="text-neutral-800"><span class="font-bold">Zixuan Lan</span><sup>*</sup>, Yanhong Li<sup>*</sup>, Joe Zhou</span>. 
-                    </p>
-                    <p class="text-neutral-500 text-xs mb-3"><sup>*</sup>Equal contribution</p>
-                    <p class="text-neutral-700 mb-4 leading-relaxed">
-                        Brief summary of the paper...
-                    </p>
-
-                    <div class="flex flex-wrap gap-3">
-                        <a href="#" class="text-neutral-600 hover:text-neutral-900 underline text-sm">arXiv</a>
-                        <a href="#" class="text-neutral-600 hover:text-neutral-900 underline text-sm">GitHub</a>
-                    </div>
+        <article class="publication" id="rmm">
+            <a href="rmm-method.png" target="_blank" rel="noopener noreferrer" aria-label="View the RMM method diagram at full size">
+                <img src="rmm-method.png" alt="RMM method diagram showing reduced matrix multiplication in attention and MLP layers" class="publication-image" width="1400" height="1009" loading="lazy">
+            </a>
+            <div class="publication-info">
+                <span class="publication-focus">Model Pruning</span>
+                <h3 class="publication-title">Reduced Matrix Multiplication: Input-Adaptive Matrix-Product Reduction for LLM Inference</h3>
+                <p class="publication-authors"><strong>Zixuan Lan</strong>, Yanhong Li, Jiawei Zhou</p>
+                <p class="publication-tldr"><span>TL;DR</span> Reduce inference computation by adaptively selecting informative slices of matrix products without changing model weights.</p>
+                <div class="publication-links">
+                    <span class="publication-badge">Findings of EMNLP 2026</span>
+                    <a href="https://arxiv.org/abs/2608.13426" class="publication-link" target="_blank" rel="noopener noreferrer">Paper <span aria-hidden="true">↗</span></a>
+                    <a href="https://github.com/Zesearch/rmm-llm" class="publication-link" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span></a>
                 </div>
             </div>
-        </div>
+        </article>
+
+        <article class="publication" id="seeing-without-looking">
+            <a href="seeing-without-looking.png" target="_blank" rel="noopener noreferrer" aria-label="View the Seeing Without Looking illustration at full size">
+                <img src="seeing-without-looking.png" alt="Visual dependency study using token masking, image degradation, and entity-level interventions" class="publication-image" width="960" height="728" loading="lazy">
+            </a>
+            <div class="publication-info">
+                <span class="publication-focus">Visual Grounding</span>
+                <h3 class="publication-title">Seeing Without Looking: Visual Dependency in Vision-Language Models</h3>
+                <p class="publication-authors"><strong>Zixuan Lan</strong><sup>*</sup>, Luzhe Sun<sup>*</sup>, Matthew R. Walter, Jiawei Zhou</p>
+                <p class="publication-contribution"><sup>*</sup>Equal contribution</p>
+                <p class="publication-tldr"><span>TL;DR</span> Probe how much VLM predictions actually depend on fine-grained visual evidence.</p>
+                <div class="publication-links">
+                    <span class="publication-badge">CVPR-W 2026</span>
+                    <a href="https://arxiv.org/abs/2605.22903" class="publication-link" target="_blank" rel="noopener noreferrer">Paper <span aria-hidden="true">↗</span></a>
+                    <a href="https://github.com/Zesearch/vlm-seeing-without-looking" class="publication-link" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span></a>
+                    <a href="https://zesearch.github.io/vlm-seeing-without-looking/" class="publication-link" target="_blank" rel="noopener noreferrer">Website <span aria-hidden="true">↗</span></a>
+                </div>
+            </div>
+        </article>
+
+        <article class="publication">
+            <img src="text_to_image.jpg" alt="Visual overview of Text or Pixels" class="publication-image" loading="lazy">
+            <div class="publication-info">
+                <span class="publication-focus">Token Compression</span>
+                <h3 class="publication-title">Text or Pixels? It Takes Half: On the Token Efficiency of Visual Text Inputs in Multimodal LLMs</h3>
+                <p class="publication-authors">Yanhong Li<sup>*</sup>, <strong>Zixuan Lan</strong><sup>*</sup>, Joe Zhou</p>
+                <p class="publication-contribution"><sup>*</sup>Equal contribution</p>
+                <p class="publication-tldr"><span>TL;DR</span> Compress text inputs by rendering them as images, reducing token usage while preserving task performance.</p>
+                <div class="publication-links">
+                    <span class="publication-badge">Findings of EMNLP 2025</span>
+                    <a href="https://arxiv.org/abs/2510.18279" class="publication-link" target="_blank" rel="noopener noreferrer">Paper <span aria-hidden="true">↗</span></a>
+                    <a href="https://github.com/yanhong-lbh/text_or_pixels" class="publication-link" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span></a>
+                </div>
+            </div>
+        </article>
 
     </section>
 

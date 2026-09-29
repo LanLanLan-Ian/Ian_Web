@@ -1,0 +1,1244 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:html="http://www.w3.org/1999/xhtml" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="workflow-title"><title id="workflow-title">SABRE workflow: Test Primer, Compile and Construct, Stress Candidates, Filter Verify and Test</title><foreignObject width="1200" height="800"><html:div class="sabre-export"><html:style>.sabre-export {
+  color-scheme: light;
+  --bg: #f4f6f8;
+  --panel: #ffffff;
+  --panel-strong: #e8edf2;
+  --line: #cbd5df;
+  --text: #17212b;
+  --muted: #5e6b77;
+  --soft: #354452;
+  --accent: #087f76;
+  --accent-2: #6356d8;
+  --repair: #d83b5c;
+  --success: #217a50;
+  --cyan: #078e83;
+}
+.pipeline-diagram {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6cqw;
+  width: 100%;
+  height: 100%;
+  padding: 2.4cqw;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 7% 7%, rgba(72, 224, 208, 0.14), transparent 24%),
+    radial-gradient(circle at 92% 92%, rgba(139, 124, 255, 0.14), transparent 27%),
+    linear-gradient(rgba(255, 255, 255, 0.027) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.027) 1px, transparent 1px),
+    #0b1015;
+  background-size: auto, auto, 5.5cqw 5.5cqw, 5.5cqw 5.5cqw, auto;
+}
+
+.pipeline-diagram::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.045), transparent 23% 75%, rgba(255, 255, 255, 0.025));
+}
+
+.pipeline-diagram-header,
+.pipeline-diagram-footer,
+.pipeline-flow {
+  position: relative;
+  z-index: 1;
+}
+
+.pipeline-diagram-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2cqw;
+  min-height: 7.2cqw;
+  padding-bottom: 1.35cqw;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.pipeline-diagram-header &gt; div {
+  display: grid;
+  gap: 0.25cqw;
+}
+
+.pipeline-kicker {
+  color: var(--accent);
+  font-size: clamp(7px, 0.92cqw, 11px);
+  font-weight: 820;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.pipeline-diagram-header strong {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: clamp(13px, 1.85cqw, 22px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.pipeline-mode {
+  flex: 0 0 auto;
+  padding: 0.65cqw 1.05cqw;
+  color: #d9d3ff;
+  border: 1px solid rgba(139, 124, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(139, 124, 255, 0.09);
+  font-size: clamp(7px, 0.88cqw, 10px);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.pipeline-flow {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 0.9fr) 2.5cqw
+    minmax(0, 1.18fr) 2.5cqw
+    minmax(0, 1.05fr) 2.5cqw
+    minmax(0, 1.2fr);
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+}
+
+.pipeline-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1cqw;
+  min-width: 0;
+  padding: 1.35cqw;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: clamp(8px, 1.25cqw, 14px);
+  background: linear-gradient(145deg, rgba(25, 33, 41, 0.92), rgba(13, 18, 24, 0.94));
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.035), 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+
+.pipeline-stage::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 1.2cqw;
+  right: 1.2cqw;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--stage-accent, var(--accent)), transparent);
+  opacity: 0.72;
+}
+
+.primer-stage { --stage-accent: #48e0d0; }
+.construct-stage { --stage-accent: #8b7cff; }
+.candidate-stage { --stage-accent: #eaa8d8; }
+.validation-stage { --stage-accent: #63d99a; }
+
+.pipeline-stage-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.75cqw;
+  min-width: 0;
+}
+
+.pipeline-stage-heading &gt; span {
+  display: grid;
+  flex: 0 0 auto;
+  width: clamp(17px, 2.2cqw, 26px);
+  height: clamp(17px, 2.2cqw, 26px);
+  place-items: center;
+  color: var(--stage-accent);
+  border: 1px solid color-mix(in srgb, var(--stage-accent) 42%, transparent);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--stage-accent) 9%, transparent);
+  font-size: clamp(6px, 0.78cqw, 9px);
+  font-weight: 850;
+}
+
+.pipeline-stage-heading strong {
+  min-width: 0;
+  font-size: clamp(8px, 1.1cqw, 13px);
+  line-height: 1.15;
+}
+
+.pipeline-connector {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.pipeline-connector::before {
+  content: "";
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(72, 224, 208, 0.25), rgba(139, 124, 255, 0.85));
+}
+
+.pipeline-connector::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 0.7cqw;
+  height: 0.7cqw;
+  border-top: 1px solid #b8adff;
+  border-right: 1px solid #b8adff;
+  transform: rotate(45deg);
+}
+
+.pipeline-connector i {
+  position: absolute;
+  width: 0.42cqw;
+  height: 0.42cqw;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(139, 124, 255, 0.9);
+}
+
+.primer-documents {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8cqw;
+}
+
+.primer-document {
+  position: relative;
+  display: grid;
+  place-items: center;
+  gap: 0.45cqw;
+  min-width: 0;
+  padding: 1cqw 0.5cqw 0.75cqw;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.8cqw;
+  background: rgba(255, 255, 255, 0.035);
+  text-align: center;
+}
+
+.primer-document::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-style: solid;
+  border-width: 0 0 1.3cqw 1.3cqw;
+  border-color: transparent transparent rgba(255, 255, 255, 0.11) transparent;
+}
+
+.primer-document b {
+  display: grid;
+  width: clamp(20px, 2.7cqw, 34px);
+  height: clamp(20px, 2.7cqw, 34px);
+  place-items: center;
+  border-radius: 0.65cqw;
+  font-size: clamp(7px, 0.95cqw, 11px);
+}
+
+.design-document b {
+  color: #ffd7ac;
+  background: linear-gradient(145deg, #ff9d45, #db652a);
+}
+
+.schema-document b {
+  color: #cce9ff;
+  background: linear-gradient(145deg, #477daa, #344d88);
+}
+
+.primer-document span,
+.primer-contract span {
+  font-size: clamp(6px, 0.78cqw, 9px);
+  line-height: 1.15;
+}
+
+.primer-contract {
+  display: grid;
+  gap: 0.48cqw;
+}
+
+.primer-contract span {
+  padding: 0.58cqw 0.7cqw;
+  overflow: hidden;
+  color: #cdd5dd;
+  border: 1px solid rgba(72, 224, 208, 0.09);
+  border-radius: 999px;
+  background: rgba(72, 224, 208, 0.055);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.primer-definition {
+  position: relative;
+  display: grid;
+  flex: 1;
+  min-height: 0;
+  place-content: center;
+  gap: 0.9cqw;
+  padding: 0.9cqw 0.7cqw;
+  text-align: center;
+}
+
+.primer-merge-mark {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 0.55cqw;
+  width: 78%;
+  margin: 0 auto;
+}
+
+.primer-merge-mark i {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(72, 224, 208, 0.55));
+}
+
+.primer-merge-mark i:last-child {
+  background: linear-gradient(90deg, rgba(72, 224, 208, 0.55), transparent);
+}
+
+.primer-merge-mark b {
+  display: grid;
+  width: clamp(18px, 2.2cqw, 27px);
+  height: clamp(18px, 2.2cqw, 27px);
+  place-items: center;
+  color: #baf8ef;
+  border: 1px solid rgba(72, 224, 208, 0.32);
+  border-radius: 50%;
+  background: rgba(72, 224, 208, 0.09);
+  font-size: clamp(8px, 1cqw, 12px);
+}
+
+.primer-definition &gt; div {
+  display: grid;
+  gap: 0.3cqw;
+  padding: 0.9cqw 0.65cqw;
+  border: 1px solid rgba(72, 224, 208, 0.12);
+  border-radius: 0.75cqw;
+  background: radial-gradient(circle at 50% 0, rgba(72, 224, 208, 0.1), transparent 65%);
+}
+
+.primer-definition small {
+  color: var(--accent);
+  font-size: clamp(5.5px, 0.68cqw, 8px);
+  font-weight: 760;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.primer-definition &gt; div &gt; b {
+  color: #dbe4ea;
+  font-size: clamp(6px, 0.78cqw, 9px);
+  font-weight: 620;
+  line-height: 1.35;
+}
+
+.agent-compiler {
+  display: flex;
+  align-items: center;
+  gap: 0.9cqw;
+  padding: 0.85cqw;
+  border: 1px solid rgba(139, 124, 255, 0.17);
+  border-radius: 0.9cqw;
+  background: linear-gradient(90deg, rgba(139, 124, 255, 0.1), rgba(139, 124, 255, 0.025));
+}
+
+.agent-orbit {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(25px, 3.2cqw, 40px);
+  height: clamp(25px, 3.2cqw, 40px);
+  border: 1px solid rgba(139, 124, 255, 0.5);
+  border-radius: 50%;
+  box-shadow: inset 0 0 14px rgba(139, 124, 255, 0.13), 0 0 16px rgba(139, 124, 255, 0.08);
+}
+
+.agent-orbit::before,
+.agent-orbit::after,
+.agent-orbit i {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+
+.agent-orbit::before {
+  inset: 22%;
+  border: 1px solid rgba(72, 224, 208, 0.55);
+}
+
+.agent-orbit::after {
+  inset: 39%;
+  background: #fff;
+  box-shadow: 0 0 9px var(--accent);
+}
+
+.agent-orbit i {
+  top: 8%;
+  right: 16%;
+  width: 18%;
+  height: 18%;
+  background: var(--accent-2);
+  box-shadow: 0 0 8px rgba(139, 124, 255, 0.8);
+}
+
+.agent-compiler &gt; div {
+  display: grid;
+  min-width: 0;
+  gap: 0.22cqw;
+}
+
+.agent-compiler b,
+.construction-branches b,
+.filtering-title b,
+.human-review-lane b {
+  font-size: clamp(7px, 0.92cqw, 11px);
+  line-height: 1.15;
+}
+
+.agent-compiler small,
+.construction-branches small,
+.human-review-lane small {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: clamp(5.5px, 0.68cqw, 8px);
+  line-height: 1.2;
+  text-overflow: ellipsis;
+}
+
+.construction-branches {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75cqw;
+  flex: 1;
+  min-height: 0;
+}
+
+.construction-branches &gt; div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7cqw;
+  min-width: 0;
+  padding: 0.8cqw;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.85cqw;
+  background: rgba(255, 255, 255, 0.025);
+  text-align: center;
+}
+
+.branch-icon {
+  display: grid;
+  width: clamp(24px, 3.2cqw, 40px);
+  height: clamp(20px, 2.55cqw, 32px);
+  place-items: center;
+  border-radius: 0.65cqw;
+}
+
+.qa-icon {
+  color: #15242a;
+  background:
+    linear-gradient(90deg, #a6e1e4 0 48%, transparent 48% 52%, #eec9b8 52%),
+    #d7eaed;
+  font-size: clamp(6px, 0.82cqw, 10px);
+  font-weight: 900;
+}
+
+.image-icon {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(155deg, #8b7cff, #3a5368 55%, #1d2933 56%);
+}
+
+.image-icon::before {
+  content: "";
+  position: absolute;
+  top: 20%;
+  right: 18%;
+  width: 18%;
+  height: 18%;
+  border-radius: 50%;
+  background: #ffd18f;
+}
+
+.image-icon i {
+  position: absolute;
+  left: 18%;
+  right: 13%;
+  bottom: 16%;
+  height: 35%;
+  background: linear-gradient(140deg, transparent 28%, #66b9a4 29% 58%, transparent 59%), linear-gradient(45deg, #3d7678 50%, transparent 51%);
+}
+
+.branch-preview {
+  display: grid;
+  align-items: center;
+  width: 100%;
+  min-height: clamp(22px, 2.8cqw, 35px);
+  padding: 0.42cqw;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 0.55cqw;
+  background: rgba(5, 9, 13, 0.35);
+}
+
+.qa-preview {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.22cqw;
+}
+
+.qa-preview i,
+.qa-preview b {
+  display: grid;
+  min-width: 0;
+  min-height: clamp(13px, 1.45cqw, 18px);
+  place-items: center;
+  border-radius: 0.3cqw;
+  font-size: clamp(5px, 0.6cqw, 7px);
+  font-style: normal;
+  font-weight: 800;
+}
+
+.qa-preview i {
+  color: #b9f0f1;
+  background: rgba(105, 211, 216, 0.15);
+}
+
+.qa-preview b {
+  color: #f2cfbf;
+  background: rgba(234, 160, 128, 0.13);
+}
+
+.image-preview {
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0.3cqw;
+}
+
+.image-preview i {
+  display: grid;
+  min-width: 0;
+  min-height: clamp(17px, 2cqw, 25px);
+  place-items: end start;
+  padding: 0.35cqw;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.76);
+  border-radius: 0.35cqw;
+  background:
+    radial-gradient(circle at 73% 27%, #ffc879 0 9%, transparent 10%),
+    linear-gradient(150deg, #6d83a4 0 48%, #29434d 49%);
+  font-size: clamp(4.5px, 0.55cqw, 6.5px);
+  font-style: normal;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.image-preview i:last-child {
+  background:
+    radial-gradient(ellipse at 55% 66%, #8e7cf5 0 17%, transparent 18%),
+    linear-gradient(150deg, #6d83a4 0 48%, #29434d 49%);
+}
+
+.image-preview b {
+  color: #b6aaff;
+  font-size: clamp(6px, 0.74cqw, 9px);
+}
+
+.candidate-pair {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 0.45cqw;
+}
+
+.candidate-pair &gt; b {
+  color: #ae9fff;
+  font-size: clamp(8px, 1.1cqw, 13px);
+}
+
+.candidate-image {
+  position: relative;
+  aspect-ratio: 1.22 / 1;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 0.8cqw;
+  background:
+    radial-gradient(circle at 76% 24%, #ffe0a2 0 7%, transparent 8%),
+    linear-gradient(155deg, #768fa7 0 47%, #2b4651 48% 64%, #18242c 65%);
+}
+
+.candidate-image span {
+  position: absolute;
+  top: 0.5cqw;
+  left: 0.55cqw;
+  z-index: 2;
+  padding: 0.25cqw 0.42cqw;
+  color: rgba(255, 255, 255, 0.82);
+  border-radius: 0.3cqw;
+  background: rgba(4, 8, 12, 0.62);
+  font-size: clamp(5px, 0.62cqw, 7px);
+  font-weight: 760;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.candidate-object {
+  position: absolute;
+  left: 45%;
+  bottom: 16%;
+  width: 22%;
+  height: 43%;
+  border-radius: 50% 50% 34% 34%;
+  background: linear-gradient(90deg, #f1a34e, #ffd188 48%, #bd682e 50%);
+  box-shadow: 0 7px 10px rgba(0, 0, 0, 0.22);
+}
+
+.candidate-object::after {
+  content: "";
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  bottom: 15%;
+  height: 15%;
+  background: rgba(255, 255, 255, 0.82);
+  transform: rotate(-6deg);
+}
+
+.edited-candidate .candidate-object {
+  border-radius: 38% 62% 46% 54%;
+  background: linear-gradient(135deg, #9b82f8, #56d6bd);
+  transform: rotate(18deg) scale(0.8);
+}
+
+.edited-candidate .candidate-object::after {
+  display: none;
+}
+
+.edit-focus {
+  position: absolute;
+  left: 35%;
+  bottom: 9%;
+  width: 42%;
+  height: 58%;
+  border: 1px solid rgba(255, 94, 123, 0.92);
+  border-radius: 0.35cqw;
+  box-shadow: 0 0 9px rgba(255, 79, 106, 0.22);
+}
+
+.candidate-specification {
+  display: grid;
+  flex: 1;
+  min-height: 0;
+  place-content: center;
+  gap: 0.65cqw;
+  padding: 0.8cqw;
+  border: 1px solid rgba(234, 168, 216, 0.11);
+  border-radius: 0.8cqw;
+  background: radial-gradient(circle at 50% 0, rgba(234, 168, 216, 0.085), transparent 68%);
+  text-align: center;
+}
+
+.candidate-specification &gt; span {
+  color: #eed6e7;
+  font-size: clamp(6px, 0.78cqw, 9px);
+  font-weight: 720;
+  line-height: 1.2;
+}
+
+.candidate-specification small {
+  color: var(--muted);
+  font-size: clamp(5px, 0.62cqw, 7px);
+  line-height: 1.25;
+}
+
+.candidate-qa-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.25cqw;
+}
+
+.candidate-qa-row i,
+.candidate-qa-row b {
+  display: grid;
+  min-height: clamp(13px, 1.5cqw, 19px);
+  place-items: center;
+  border-radius: 0.28cqw;
+  font-size: clamp(4.5px, 0.56cqw, 6.5px);
+  font-style: normal;
+  font-weight: 800;
+}
+
+.candidate-qa-row i {
+  color: #bdebee;
+  background: rgba(90, 197, 204, 0.12);
+}
+
+.candidate-qa-row b {
+  color: #f0d0c0;
+  background: rgba(224, 150, 120, 0.11);
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.42cqw;
+  margin-top: auto;
+}
+
+.category-grid span {
+  display: flex;
+  align-items: center;
+  gap: 0.42cqw;
+  min-width: 0;
+  padding: 0.42cqw 0.5cqw;
+  overflow: hidden;
+  color: #cdd3da;
+  border: 1px solid rgba(234, 168, 216, 0.1);
+  border-radius: 0.45cqw;
+  background: rgba(234, 168, 216, 0.04);
+  font-size: clamp(5.5px, 0.69cqw, 8px);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.category-grid i {
+  display: grid;
+  flex: 0 0 auto;
+  width: clamp(12px, 1.45cqw, 18px);
+  height: clamp(12px, 1.45cqw, 18px);
+  place-items: center;
+  color: #f0c8e6;
+  border-radius: 0.36cqw;
+  background: rgba(234, 168, 216, 0.11);
+  font-size: clamp(5px, 0.62cqw, 7px);
+  font-style: normal;
+  font-weight: 850;
+}
+
+.filtering-gate,
+.human-review-lane,
+.stress-test-output {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 0.85cqw;
+}
+
+.filtering-gate {
+  display: grid;
+  gap: 0.65cqw;
+  padding: 0.8cqw;
+  background: linear-gradient(135deg, rgba(99, 217, 154, 0.085), rgba(99, 217, 154, 0.025));
+}
+
+.filtering-title {
+  display: flex;
+  align-items: center;
+  gap: 0.55cqw;
+}
+
+.filter-spark {
+  display: grid;
+  width: clamp(17px, 2cqw, 24px);
+  height: clamp(17px, 2cqw, 24px);
+  place-items: center;
+  color: #14271d;
+  border-radius: 0.52cqw;
+  background: linear-gradient(135deg, #8ef2bd, #43c786);
+  font-size: clamp(7px, 0.92cqw, 11px);
+}
+
+.filter-outcomes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45cqw;
+}
+
+.filter-outcomes span {
+  display: flex;
+  align-items: center;
+  gap: 0.35cqw;
+  padding: 0.42cqw;
+  border-radius: 0.42cqw;
+  font-size: clamp(5px, 0.64cqw, 7.5px);
+  line-height: 1.12;
+}
+
+.filter-outcomes i {
+  display: grid;
+  flex: 0 0 auto;
+  width: clamp(11px, 1.35cqw, 16px);
+  height: clamp(11px, 1.35cqw, 16px);
+  place-items: center;
+  border-radius: 50%;
+  font-size: clamp(6px, 0.72cqw, 8px);
+  font-style: normal;
+  font-weight: 900;
+}
+
+.filter-outcomes .discarded {
+  color: #d5adb5;
+  background: rgba(255, 79, 106, 0.07);
+}
+
+.filter-outcomes .discarded i {
+  color: #ffc2cc;
+  background: rgba(255, 79, 106, 0.24);
+}
+
+.filter-outcomes .retained {
+  color: #bde9cd;
+  background: rgba(99, 217, 154, 0.08);
+}
+
+.filter-outcomes .retained i {
+  color: #d5ffe4;
+  background: rgba(99, 217, 154, 0.24);
+}
+
+.human-review-lane {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.8cqw;
+  min-height: 0;
+  padding: 0.85cqw;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.human-review-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7cqw;
+}
+
+.human-review-heading &gt; div {
+  display: grid;
+  gap: 0.18cqw;
+}
+
+.review-mark {
+  display: flex;
+  align-items: end;
+  gap: 0.18cqw;
+  flex: 0 0 auto;
+  height: clamp(18px, 2.2cqw, 27px);
+}
+
+.review-mark i {
+  display: block;
+  width: clamp(4px, 0.48cqw, 6px);
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+}
+
+.review-mark i:nth-child(1) { height: 52%; }
+.review-mark i:nth-child(2) { height: 100%; }
+.review-mark i:nth-child(3) { height: 72%; }
+
+.review-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.42cqw;
+}
+
+.review-steps &gt; span {
+  display: grid;
+  min-width: 0;
+  gap: 0.2cqw;
+  padding: 0.55cqw 0.35cqw;
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: 0.48cqw;
+  background: rgba(255, 255, 255, 0.025);
+  text-align: center;
+}
+
+.review-steps i {
+  color: var(--accent);
+  font-size: clamp(4.5px, 0.54cqw, 6px);
+  font-style: normal;
+  font-weight: 850;
+}
+
+.review-steps b {
+  overflow: hidden;
+  font-size: clamp(5.5px, 0.68cqw, 8px);
+  text-overflow: ellipsis;
+}
+
+.review-steps small {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: clamp(4.5px, 0.52cqw, 6px);
+  line-height: 1.15;
+  text-overflow: ellipsis;
+}
+
+.stage-downlink {
+  position: relative;
+  display: grid;
+  flex: 0 0 clamp(6px, 0.85cqw, 10px);
+  place-items: center;
+}
+
+.stage-downlink::before {
+  content: "";
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(99, 217, 154, 0.18), rgba(139, 124, 255, 0.66));
+}
+
+.stage-downlink::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0.42cqw;
+  height: 0.42cqw;
+  border-right: 1px solid #a99fff;
+  border-bottom: 1px solid #a99fff;
+  transform: rotate(45deg);
+}
+
+.stage-downlink i {
+  position: absolute;
+  width: 0.34cqw;
+  height: 0.34cqw;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 7px rgba(139, 124, 255, 0.85);
+}
+
+.stress-test-output {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8cqw;
+  margin-top: auto;
+  padding: 0.85cqw;
+  background: linear-gradient(135deg, rgba(139, 124, 255, 0.13), rgba(72, 224, 208, 0.07));
+  box-shadow: inset 0 0 18px rgba(139, 124, 255, 0.045);
+}
+
+.stress-test-output &gt; div {
+  display: grid;
+  gap: 0.22cqw;
+}
+
+.stress-test-output span:first-child {
+  color: #b8c0c9;
+  font-size: clamp(5px, 0.62cqw, 7px);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.stress-test-output b {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: clamp(9px, 1.2cqw, 14px);
+  line-height: 1.08;
+}
+
+.model-dots {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 0.28cqw;
+  flex: 0 0 auto;
+}
+
+.model-dots i {
+  width: clamp(5px, 0.7cqw, 9px);
+  height: clamp(5px, 0.7cqw, 9px);
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.model-dots i:nth-child(2),
+.model-dots i:nth-child(5) {
+  background: rgba(72, 224, 208, 0.48);
+}
+
+.model-dots i:nth-child(3),
+.model-dots i:nth-child(4) {
+  background: rgba(139, 124, 255, 0.48);
+}
+
+.pipeline-diagram-footer {
+  display: flex;
+  align-items: center;
+  gap: 1.3cqw;
+  min-height: 2.2cqw;
+  color: #7f8b96;
+  font-size: clamp(5.5px, 0.68cqw, 8px);
+}
+
+.pipeline-diagram-footer &gt; span {
+  display: flex;
+  align-items: center;
+  gap: 0.4cqw;
+}
+
+.pipeline-diagram-footer i {
+  width: clamp(5px, 0.65cqw, 8px);
+  height: clamp(5px, 0.65cqw, 8px);
+  border-radius: 50%;
+  box-shadow: 0 0 7px currentColor;
+}
+
+.structured-dot { color: var(--accent-2); background: currentColor; }
+.generated-dot { color: #eaa8d8; background: currentColor; }
+.verified-dot { color: var(--success); background: currentColor; }
+
+.pipeline-diagram-footer a {
+  margin-left: auto;
+  color: #aab6c1;
+  border-bottom: 1px solid rgba(170, 182, 193, 0.28);
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.pipeline-diagram-footer a:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+
+.sabre-export .pipeline-diagram {
+  background:
+    radial-gradient(circle at 7% 7%, rgba(8, 127, 118, 0.1), transparent 24%),
+    radial-gradient(circle at 92% 92%, rgba(99, 86, 216, 0.1), transparent 27%),
+    linear-gradient(rgba(30, 47, 61, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 47, 61, 0.045) 1px, transparent 1px),
+    #edf2f5;
+  background-size: auto, auto, 5.5cqw 5.5cqw, 5.5cqw 5.5cqw, auto;
+}
+
+.sabre-export .pipeline-diagram::after {
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.5), transparent 23% 75%, rgba(255, 255, 255, 0.25));
+}
+
+.sabre-export .pipeline-diagram-header {
+  border-bottom-color: rgba(30, 47, 61, 0.12);
+}
+
+.sabre-export .pipeline-mode {
+  color: #5145b7;
+  border-color: rgba(99, 86, 216, 0.28);
+  background: rgba(99, 86, 216, 0.08);
+}
+
+.sabre-export .pipeline-stage {
+  border-color: rgba(30, 47, 61, 0.12);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(241, 245, 248, 0.96));
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.9), 0 10px 28px rgba(45, 61, 74, 0.1);
+}
+
+.sabre-export .primer-document,
+.sabre-export .construction-branches &gt; div,
+.sabre-export .human-review-lane,
+.sabre-export .review-steps &gt; span {
+  border-color: rgba(30, 47, 61, 0.11);
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.sabre-export .primer-document::after {
+  border-color: transparent transparent rgba(30, 47, 61, 0.11) transparent;
+}
+
+.sabre-export .primer-contract span,
+.sabre-export .primer-definition &gt; div &gt; b,
+.sabre-export .candidate-specification &gt; span,
+.sabre-export .category-grid span,
+.sabre-export .stress-test-output span:first-child {
+  color: #40505d;
+}
+
+.sabre-export .primer-definition &gt; div,
+.sabre-export .candidate-specification {
+  background-color: rgba(255, 255, 255, 0.48);
+}
+
+.sabre-export .branch-preview {
+  border-color: rgba(30, 47, 61, 0.1);
+  background: rgba(220, 228, 234, 0.62);
+}
+
+.sabre-export .filter-outcomes .discarded {
+  color: #9d3349;
+}
+
+.sabre-export .filter-outcomes .retained {
+  color: #256b48;
+}
+
+.sabre-export .stress-test-output,
+.sabre-export .filtering-gate {
+  border-color: rgba(30, 47, 61, 0.11);
+}
+
+.sabre-export .model-dots i {
+  border-color: rgba(30, 47, 61, 0.24);
+  background: rgba(30, 47, 61, 0.08);
+}
+
+.sabre-export .pipeline-diagram-footer a {
+  color: #566675;
+}
+
+
+* { box-sizing: border-box; }
+.sabre-export { width:1200px; height:800px; container-type:inline-size; color:var(--text); font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif; }
+.sabre-export .pipeline-diagram { background:#fff; padding:16px; gap:18px; }
+.sabre-export .pipeline-diagram::after { display:none; }
+.sabre-export .pipeline-stage { box-shadow:none; }
+</html:style>          <html:div class="pipeline-diagram" role="group" aria-label="SABRE workflow from a Test Primer through structured sample construction, stress-candidate generation, automated filtering, human verification, and VLM stress testing">
+            <html:div class="pipeline-diagram-header">
+              <html:div>
+                <html:span class="pipeline-kicker">SABRE workflow</html:span>
+                <html:strong>From Test Primer to verified stress test</html:strong>
+              </html:div>
+              <html:span class="pipeline-mode">Scalable · Automated</html:span>
+            </html:div>
+
+            <html:div class="pipeline-flow" aria-hidden="true">
+              <html:article class="pipeline-stage primer-stage">
+                <html:div class="pipeline-stage-heading">
+                  <html:span>01</html:span>
+                  <html:strong>Test Primer</html:strong>
+                </html:div>
+                <html:div class="primer-documents">
+                  <html:div class="primer-document design-document">
+                    <html:b>MD</html:b>
+                    <html:span>Task Design</html:span>
+                  </html:div>
+                  <html:div class="primer-document schema-document">
+                    <html:b>{ }</html:b>
+                    <html:span>Data Schema</html:span>
+                  </html:div>
+                </html:div>
+                <html:div class="primer-definition">
+                  <html:span class="primer-merge-mark"><html:i /><html:b>+</html:b><html:i /></html:span>
+                  <html:div>
+                    <html:small>Canonical test contract</html:small>
+                    <html:b>What to test · how to build · how to score</html:b>
+                  </html:div>
+                </html:div>
+                <html:div class="primer-contract">
+                  <html:span>Question format</html:span>
+                  <html:span>Area of interest</html:span>
+                  <html:span>Edit plan</html:span>
+                </html:div>
+              </html:article>
+
+              <html:span class="pipeline-connector"><html:i /></html:span>
+
+              <html:article class="pipeline-stage construct-stage">
+                <html:div class="pipeline-stage-heading">
+                  <html:span>02</html:span>
+                  <html:strong>Compile &amp; Construct</html:strong>
+                </html:div>
+                <html:div class="agent-compiler">
+                  <html:span class="agent-orbit"><html:i /></html:span>
+                  <html:div>
+                    <html:b>Agent compiler</html:b>
+                    <html:small>Structured sample specifications</html:small>
+                  </html:div>
+                </html:div>
+                <html:div class="construction-branches">
+                  <html:div>
+                    <html:span class="branch-icon qa-icon">Q/A</html:span>
+                    <html:span class="branch-preview qa-preview">
+                      <html:i>Q1</html:i><html:b>A1</html:b><html:i>Q2</html:i><html:b>A2</html:b>
+                    </html:span>
+                    <html:b>Q&amp;A Builder</html:b>
+                    <html:small>Questions · references · evaluators</html:small>
+                  </html:div>
+                  <html:div>
+                    <html:span class="branch-icon image-icon"><html:i /></html:span>
+                    <html:span class="branch-preview image-preview">
+                      <html:i>Base</html:i><html:b>→</html:b><html:i>Edited</html:i>
+                    </html:span>
+                    <html:b>Generate &amp; Edit</html:b>
+                    <html:small>Base · edit · repair</html:small>
+                  </html:div>
+                </html:div>
+              </html:article>
+
+              <html:span class="pipeline-connector"><html:i /></html:span>
+
+              <html:article class="pipeline-stage candidate-stage">
+                <html:div class="pipeline-stage-heading">
+                  <html:span>03</html:span>
+                  <html:strong>Stress Candidates</html:strong>
+                </html:div>
+                <html:div class="candidate-pair">
+                  <html:div class="candidate-image base-candidate">
+                    <html:span>Base</html:span>
+                    <html:i class="candidate-object" />
+                  </html:div>
+                  <html:b>→</html:b>
+                  <html:div class="candidate-image edited-candidate">
+                    <html:span>Edited</html:span>
+                    <html:i class="candidate-object" />
+                    <html:i class="edit-focus" />
+                  </html:div>
+                </html:div>
+                <html:div class="candidate-specification">
+                  <html:span>Evidence-bound question–answer pairs</html:span>
+                  <html:div class="candidate-qa-row">
+                    <html:i>Q1</html:i><html:b>A1</html:b><html:i>Q2</html:i><html:b>A2</html:b><html:i>Q3</html:i><html:b>A3</html:b>
+                  </html:div>
+                  <html:small>Controlled visual change · fixed reference answer</html:small>
+                </html:div>
+                <html:div class="category-grid">
+                  <html:span><html:i>C</html:i>Context</html:span>
+                  <html:span><html:i>T</html:i>Texture</html:span>
+                  <html:span><html:i>A</html:i>Attribute</html:span>
+                  <html:span><html:i>L</html:i>Language</html:span>
+                  <html:span><html:i>#</html:i>Counting</html:span>
+                  <html:span><html:i>↔</html:i>Spatial</html:span>
+                </html:div>
+              </html:article>
+
+              <html:span class="pipeline-connector"><html:i /></html:span>
+
+              <html:article class="pipeline-stage validation-stage">
+                <html:div class="pipeline-stage-heading">
+                  <html:span>04</html:span>
+                  <html:strong>Filter, Verify &amp; Test</html:strong>
+                </html:div>
+                <html:div class="filtering-gate">
+                  <html:div class="filtering-title">
+                    <html:span class="filter-spark">✦</html:span>
+                    <html:b>Filtering VLM</html:b>
+                  </html:div>
+                  <html:div class="filter-outcomes">
+                    <html:span class="discarded"><html:i>×</html:i>Solved · discard</html:span>
+                    <html:span class="retained"><html:i>✓</html:i>Failed · retain</html:span>
+                  </html:div>
+                </html:div>
+                <html:span class="stage-downlink"><html:i /></html:span>
+                <html:div class="human-review-lane">
+                  <html:div class="human-review-heading">
+                    <html:span class="review-mark"><html:i /><html:i /><html:i /></html:span>
+                    <html:div>
+                      <html:b>Human review</html:b>
+                      <html:small>Candidate quality control</html:small>
+                    </html:div>
+                  </html:div>
+                  <html:div class="review-steps">
+                    <html:span><html:i>01</html:i><html:b>Validate</html:b><html:small>Visual evidence</html:small></html:span>
+                    <html:span><html:i>02</html:i><html:b>Annotate</html:b><html:small>Q&amp;A and regions</html:small></html:span>
+                    <html:span><html:i>03</html:i><html:b>Repair</html:b><html:small>Localized edits</html:small></html:span>
+                  </html:div>
+                </html:div>
+                <html:span class="stage-downlink"><html:i /></html:span>
+                <html:div class="stress-test-output">
+                  <html:div>
+                    <html:span>Verified output</html:span>
+                    <html:b>VLM Stress Test</html:b>
+                  </html:div>
+                  <html:span class="model-dots"><html:i /><html:i /><html:i /><html:i /><html:i /><html:i /></html:span>
+                </html:div>
+              </html:article>
+            </html:div>
+
+            <html:div class="pipeline-diagram-footer" aria-hidden="true">
+              <html:span><html:i class="structured-dot" />Structured</html:span>
+              <html:span><html:i class="generated-dot" />Generated</html:span>
+              <html:span><html:i class="verified-dot" />Human-verified</html:span>
+
+            </html:div>
+          </html:div></html:div></foreignObject></svg>
