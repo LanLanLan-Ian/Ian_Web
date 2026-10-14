@@ -1,200 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ian Lan - Free Researcher</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        }
-        @keyframes token-flow {
-            0%, 100% { transform: translateX(0); opacity: 0.3; }
-            50% { transform: translateX(10px); opacity: 1; }
-        }
-        @keyframes token-merge {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(0.95); }
-        }
-        .token-item {
-            animation: token-flow 3s ease-in-out infinite;
-        }
-        .token-merged {
-            animation: token-merge 3s ease-in-out infinite;
-        }
-
-        .publication {
-            display: grid;
-            grid-template-columns: 180px minmax(0, 1fr);
-            gap: 28px;
-            padding: 28px 0;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        .publication:first-of-type { padding-top: 0; }
-        .publication:last-child { border-bottom: 0; }
-        .publication-image {
-            width: 100%;
-            height: auto;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-        }
-        .convcue-preview {
-            display: block;
-            width: 100%;
-            align-self: center;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            background: #fff;
-        }
-        .convcue-preview .publication-image {
-            display: block;
-            width: 100%;
-            max-width: none;
-            height: auto;
-            border: 0;
-            border-radius: 8px;
-        }
-        .convcue-preview:focus-visible { outline: 2px solid #315b86; outline-offset: 3px; }
-        .umim-preview {
-            display: block;
-            width: 100%;
-            aspect-ratio: 960 / 777;
-            align-self: start;
-            overflow: hidden;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            background: #fff;
-        }
-        .umim-preview .publication-image {
-            display: block;
-            width: 166.666667%;
-            max-width: none;
-            height: auto;
-            border: 0;
-            border-radius: 0;
-        }
-        .umim-preview:focus-visible { outline: 2px solid #315b86; outline-offset: 3px; }
-        .sabre-workflow-preview { display: block; align-self: center; }
-        .sabre-workflow-preview img { display: block; width: 100%; height: auto; background: #fff; }
-        .sabre-workflow-preview:focus-visible { outline: 2px solid #315b86; outline-offset: 3px; }
-        .publication-info { grid-column: 2; }
-        .publication-focus {
-            display: inline-block;
-            margin-bottom: 8px;
-            padding: 3px 8px;
-            border: 1px solid #e5e7eb;
-            border-radius: 5px;
-            background: #f7f8fa;
-            color: #525b67;
-            font-size: 11px;
-            font-weight: 500;
-            line-height: 1.5;
-        }
-        .publication-title {
-            margin: 0 0 10px;
-            font-size: 19px;
-            font-weight: 600;
-            line-height: 1.45;
-            letter-spacing: -0.015em;
-        }
-        .publication-authors { color: #525252; font-size: 14px; line-height: 1.7; }
-        .publication-authors strong { color: #262626; font-weight: 600; }
-        .publication-contribution { margin-top: 5px; color: #737373; font-size: 12px; }
-        .publication-tldr {
-            margin: 10px 0 0;
-            color: #525252;
-            font-size: 13px;
-            line-height: 1.65;
-        }
-        .publication-tldr > span { margin-right: 5px; color: #404040; font-weight: 600; }
-        .publication-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-        .publication-badge, .publication-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 7px;
-            min-height: 34px;
-            padding: 6px 11px;
-            border: 1px solid #dbe4ef;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 500;
-            line-height: 1.5;
-        }
-        .publication-badge { color: #315b86; background: #eff5fb; }
-        .publication-badge--review { color: #525252; background: #f5f5f5; border-color: #e5e5e5; }
-        .publication-link { color: #404040; background: #fff; border-color: #d4d4d4; text-decoration: none; }
-        .publication-link:hover { color: #234d77; background: #f4f7fb; border-color: #9eb6d0; }
-        .publication-link:focus-visible { outline: 2px solid #315b86; outline-offset: 3px; }
-        .publication-link:disabled { color: #737373; background: #f5f5f5; border-color: #e5e5e5; cursor: default; }
-        @media (max-width: 640px) {
-            .publication { grid-template-columns: minmax(0, 1fr); gap: 18px; }
-            .publication-image { max-width: 260px; }
-            .sabre-workflow-preview, .umim-preview, .convcue-preview { max-width: 260px; }
-            .publication-info { grid-column: 1; }
-            .publication-title { font-size: 18px; }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="Zixuan (Ian) Lan — independent researcher working on model efficiency, large language models and computer vision.">
+<title>Zixuan (Ian) Lan · Research</title>
+<link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-white text-neutral-900">
-    
-    <!-- About Section -->
-    <section class="max-w-5xl mx-auto px-8 py-16">
-        <div class="flex items-start gap-12">
-            
-            
-            <div class="flex-1">
-                <h1 class="text-5xl font-light mb-2">Zixuan(Ian) Lan</h1>
-                <p class="text-neutral-500 mb-8">zixuanlan@uchicago.edu, lanzixuan521@gmail.com</p>
-                
-                <p class="text-neutral-700 mb-6 leading-relaxed">
-                    Hello! I'm an independent researcher. I received my Master's degree from the University of Chicago, where I worked with Professor <a href="https://joezhouai.com/" class="text-neutral-900 underline hover:text-neutral-600" target="_blank">Joe Zhou</a> from Stony Brook University (life-long collaborator and advisor). 
-                    My research focuses on improving model efficiency through algorithmic innovations and computer vision.
-                </p>
-                <p class="text-neutral-700 mb-6 leading-relaxed">
-                    I currently work as an Algorithm Engineer on the AI team at a fintech company. My work focuses on macroeconomic and financial forecasting, spanning traditional time-series models, LLM-based forecasting, and simulation. Through my industry work, I have gained extensive hands-on experience in AI agent development and model training.
-                </p>
-                
-                <div class="space-x-4 text-neutral-700">
-                    <a href="https://github.com/LanLanLan-Ian" class="hover:text-neutral-900 underline" target="_blank">GitHub</a>
-                    <a href="https://scholar.google.com/citations?user=mei-ULsAAAAJ&hl=en" class="hover:text-neutral-900 underline" target="_blank">Scholar</a>
-                    <a href="/cv.pdf" class="hover:text-neutral-900 underline">CV</a>
-                </div>
-            </div>
-            
-            <div class="flex-shrink-0">
-                <img src="profile.jpg" alt="Ian Lan" 
-                     class="w-48 h-48 rounded-full object-cover border-2 border-neutral-300 shadow-lg">
-            </div>
-        </div>
-        
-        <div class="mt-16 flex items-center justify-center opacity-80">
-            <div class="flex items-center gap-3">
-                <div class="token-item flex gap-1.5">
-                    <div class="w-16 h-2 bg-neutral-500 rounded-full"></div>
-                    <div class="w-14 h-2 bg-neutral-500 rounded-full"></div>
-                    <div class="w-18 h-2 bg-neutral-500 rounded-full"></div>
-                </div>
-                <svg class="w-5 h-5 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-                <div class="token-merged flex gap-1.5">
-                    <div class="w-20 h-2 bg-neutral-600 rounded-full"></div>
-                    <div class="w-18 h-2 bg-neutral-600 rounded-full"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="max-w-5xl mx-auto px-8 py-16">
-        <h2 class="text-3xl font-light mb-10">Publications</h2>
-        
-        <article class="publication" id="convcue">
+<body id="top">
+<a class="skip-link" href="#about">Skip to content</a>
+<header class="site-header">
+<a class="wordmark" href="#top" aria-label="Ian Lan, back to top"><img src="assets/logo-il-handdrawn.svg" width="46" height="46" alt="IL"></a>
+<span class="masthead">ZIXUAN (IAN) LAN</span>
+<nav aria-label="Main navigation"><a href="#about">About</a><a href="#research">Research</a><a href="#contact">Contact <span aria-hidden="true">↗</span></a></nav>
+</header>
+<main>
+<section class="about content-width" id="about" aria-labelledby="about-heading">
+<div class="intro-heading"><h1 id="about-heading">Zixuan <span>(Ian)</span> Lan</h1><p class="research-direction">Research solves real problems
+<svg class="pencil-underline" viewBox="0 0 305 12" aria-hidden="true"><path d="M2 7C70 3 178 9 302 4M8 10C85 6 182 10 271 7"/></svg></p></div>
+<figure class="portrait"><div class="portrait-frame"><img src="profile.jpg" width="156" height="156" alt="Zixuan (Ian) Lan"><svg viewBox="0 0 184 188" aria-hidden="true"><path d="M16 16C56 12 131 14 168 18L170 168C123 174 67 169 15 170ZM19 12C73 15 123 11 173 15L174 163M12 27L10 174L151 176"/></svg></div><figcaption>Zixuan (Ian) Lan</figcaption>
+<svg class="margin-sketch" viewBox="0 0 180 82" aria-hidden="true"><g><path d="M15 24L34 23L35 42L16 44ZM40 24L59 25L58 43L41 43ZM65 24L83 23L84 42L65 44M65 24L65 44M18 48C48 56 69 54 83 49M93 35C108 34 117 37 126 34M121 29L128 34L121 39M139 24L160 23L161 44L139 45Z"/><path class="faint-stroke" d="M13 21L33 20M138 21L158 20M45 60C64 64 91 63 107 54M102 53L108 53L107 59"/></g></svg></figure>
+<div class="about-copy"><p>Hello! I'm an independent researcher. I received my Master's degree from the University of Chicago, where I worked with Professor <a href="https://joezhouai.com/" target="_blank" rel="noopener noreferrer">Joe Zhou</a> from Stony Brook University (life-long collaborator and advisor).
+                    My research focuses on improving model efficiency through algorithmic innovations and computer vision.</p><p>I currently work as an Algorithm Engineer on the AI team at a fintech company. My work focuses on macroeconomic and financial forecasting, spanning traditional time-series models, LLM-based forecasting, and simulation. Through my industry work, I have gained extensive hands-on experience in AI agent development and model training.</p>
+<div class="profile-links"><a href="https://scholar.google.com/citations?user=mei-ULsAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a><a href="https://github.com/LanLanLan-Ian" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a href="mailto:zixuanlan@uchicago.edu">Email <span aria-hidden="true">↗</span></a></div>
+</div>
+</section>
+<section class="research content-width" id="research" aria-labelledby="research-heading">
+<div class="section-heading"><div class="research-title"><h2 id="research-heading">Selected research</h2><svg class="heading-mark" viewBox="0 0 46 38" aria-hidden="true"><path d="M5 6C21 1 37 7 30 29M22 23L30 31L38 23"/></svg></div><p class="section-note">2025 — 2026</p><svg class="section-rule" viewBox="0 0 1040 8" preserveAspectRatio="none" aria-hidden="true"><path d="M1 4C74 2 147 6 245 3S646 5 1039 3"/><path d="M2 7C71 5 145 7 234 5"/></svg></div>
+<div class="publication-list"><article class="publication" id="convcue">
             <a class="convcue-preview" href="convcue-capability.png" target="_blank" rel="noopener noreferrer" aria-label="View the complete ConvCue capability and ablation figure">
                 <img src="convcue-capability.png" alt="ConvCue capability radar and convolutional feature augmentation results across three models" class="publication-image" width="1600" height="897" loading="lazy">
             </a>
-            <div class="publication-info">
+            <div class="publication-info"><span class="paper-number" aria-hidden="true">01</span>
                 <span class="publication-focus">VLM Training</span>
                 <h3 class="publication-title">ConvCue: Complementary Visual Inductive Biases for Vision-Language Models</h3>
                 <p class="publication-authors"><strong>Zixuan Lan</strong>, Shichu Sun</p>
@@ -205,12 +43,11 @@
                 </div>
             </div>
         </article>
-
-        <article class="publication" id="umim">
+<article class="publication" id="umim">
             <a class="umim-preview" href="umim-method.png" target="_blank" rel="noopener noreferrer" aria-label="View the UMIM training and merge module diagram at full size">
                 <img src="umim-method.png" alt="Distilling sequential computation from a frozen Transformer into a trainable merge module" class="publication-image" width="1600" height="777" loading="lazy">
             </a>
-            <div class="publication-info">
+            <div class="publication-info"><span class="paper-number" aria-hidden="true">02</span>
                 <span class="publication-focus">Token Merging</span>
                 <h3 class="publication-title">Distilling Sequential Computation in Transformer Language Models</h3>
                 <p class="publication-authors"><strong>Zixuan Lan</strong>, Jessica Yang, Yanhong Li, Karen Livescu, Jiawei Zhou</p>
@@ -223,12 +60,11 @@
                 </div>
             </div>
         </article>
-
-        <article class="publication" id="sabre">
+<article class="publication" id="sabre">
             <a class="sabre-workflow-preview" href="sabre-workflow.svg" target="_blank" rel="noopener noreferrer" aria-label="View the SABRE workflow diagram at full size">
                 <img src="sabre-workflow.svg" alt="SABRE workflow: Test Primer, Compile and Construct, Stress Candidates, Filter Verify and Test" class="publication-image" width="1200" height="800" loading="lazy">
             </a>
-            <div class="publication-info">
+            <div class="publication-info"><span class="paper-number" aria-hidden="true">03</span>
                 <span class="publication-focus">Visual Benchmark</span>
                 <h3 class="publication-title">SABRE: Scalable and Automated Benchmarking of VLMs under Stress</h3>
                 <p class="publication-authors"><strong>Zixuan Lan</strong><sup>*</sup>, Luzhe Sun<sup>*</sup>, Matthew R. Walter, Jiawei Zhou</p>
@@ -241,12 +77,11 @@
                 </div>
             </div>
         </article>
-
-        <article class="publication" id="rmm">
+<article class="publication" id="rmm">
             <a href="rmm-method.png" target="_blank" rel="noopener noreferrer" aria-label="View the RMM method diagram at full size">
                 <img src="rmm-method.png" alt="RMM method diagram showing reduced matrix multiplication in attention and MLP layers" class="publication-image" width="1400" height="1009" loading="lazy">
             </a>
-            <div class="publication-info">
+            <div class="publication-info"><span class="paper-number" aria-hidden="true">04</span>
                 <span class="publication-focus">Model Pruning</span>
                 <h3 class="publication-title">Reduced Matrix Multiplication: Input-Adaptive Matrix-Product Reduction for LLM Inference</h3>
                 <p class="publication-authors"><strong>Zixuan Lan</strong>, Yanhong Li, Jiawei Zhou</p>
@@ -258,12 +93,11 @@
                 </div>
             </div>
         </article>
-
-        <article class="publication" id="seeing-without-looking">
+<article class="publication" id="seeing-without-looking">
             <a href="seeing-without-looking.png" target="_blank" rel="noopener noreferrer" aria-label="View the Seeing Without Looking illustration at full size">
                 <img src="seeing-without-looking.png" alt="Visual dependency study using token masking, image degradation, and entity-level interventions" class="publication-image" width="960" height="728" loading="lazy">
             </a>
-            <div class="publication-info">
+            <div class="publication-info"><span class="paper-number" aria-hidden="true">05</span>
                 <span class="publication-focus">Visual Grounding</span>
                 <h3 class="publication-title">Seeing Without Looking: Visual Dependency in Vision-Language Models</h3>
                 <p class="publication-authors"><strong>Zixuan Lan</strong><sup>*</sup>, Luzhe Sun<sup>*</sup>, Matthew R. Walter, Jiawei Zhou</p>
@@ -277,10 +111,9 @@
                 </div>
             </div>
         </article>
-
-        <article class="publication">
-            <img src="text_to_image.jpg" alt="Visual overview of Text or Pixels" class="publication-image" loading="lazy">
-            <div class="publication-info">
+<article class="publication" id="text-or-pixels">
+            <a href="text_to_image.jpg" target="_blank" rel="noopener noreferrer" aria-label="View the Text or Pixels figure at full size"><img src="text_to_image.jpg" alt="Visual overview of Text or Pixels" class="publication-image" loading="lazy"></a>
+            <div class="publication-info"><span class="paper-number" aria-hidden="true">06</span>
                 <span class="publication-focus">Token Compression</span>
                 <h3 class="publication-title">Text or Pixels? It Takes Half: On the Token Efficiency of Visual Text Inputs in Multimodal LLMs</h3>
                 <p class="publication-authors">Yanhong Li<sup>*</sup>, <strong>Zixuan Lan</strong><sup>*</sup>, Joe Zhou</p>
@@ -292,9 +125,13 @@
                     <a href="https://github.com/yanhong-lbh/text_or_pixels" class="publication-link" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span></a>
                 </div>
             </div>
-        </article>
-
-    </section>
-
+        </article></div>
+</section>
+<footer class="contact content-width" id="contact">
+<div><h2>Get in touch.</h2><p class="contact-note">Research, ideas, and collaboration.</p></div>
+<div class="contact-links"><a href="mailto:zixuanlan@uchicago.edu">zixuanlan@uchicago.edu <span aria-hidden="true">↗</span></a><a href="mailto:lanzixuan521@gmail.com">lanzixuan521@gmail.com <span aria-hidden="true">↗</span></a></div>
+<div class="colophon"><span>© 2026 Zixuan (Ian) Lan</span><a href="#top">Back to the top ↑</a></div>
+</footer>
+</main>
 </body>
 </html>
